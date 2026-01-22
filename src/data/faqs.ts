@@ -122,7 +122,7 @@ export const faqs: FAQ[] = [
 },
 {
   id: '20',
-  question: 'Do you have laptops? / laptop / laptops',
+  question: 'Do you have laptops? / Laptop / Laptops',
   answer: 'Yes! We offer a variety of laptops for different needs. Use Find Products and select Laptop to explore available options.',
   category: 'chat',
 },
