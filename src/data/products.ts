@@ -24,7 +24,7 @@ export const products: Product[] = [
     id: 'laptop-3',
     name: 'GameForce X17',
     price: 1499,
-    image: '🖥️',
+    image: '🎮',
     category: 'laptop',
     rating: 4.9,
     specs: ['RTX 4070', '32GB RAM', '1TB SSD', '17.3" 165Hz'],
