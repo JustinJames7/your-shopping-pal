@@ -84,4 +84,40 @@ export const faqs: FAQ[] = [
     answer: 'I\'m the ShopSmart virtual assistant. I\'m here to help you navigate our store, find products, and manage your orders.',
     category: 'chat',
   },
+  {
+  id: '14',
+  question: 'I want to buy an iPhone',
+  answer: 'Great choice! To find the best iPhone for you, select Find Products and then choose Phone to see recommendations.',
+  category: 'chat',
+},
+{
+  id: '15',
+  question: 'Which phone is best?',
+  answer: 'That depends on your needs and budget. Use Find Products → Phone and I’ll help you choose the best option.',
+  category: 'chat',
+},
+{
+  id: '16',
+  question: 'Show phone recommendations',
+  answer: 'I can help with that! Please select Find Products and choose Phone to get personalized recommendations.',
+  category: 'chat',
+},
+  {
+  id: '17',
+  question: 'Do you have phones?',
+  answer: 'Yes! We have a wide range of smartphones. You can use the Find Products option and select Phone to see available models.',
+  category: 'chat',
+},
+{
+  id: '18',
+  question: 'Show me phones',
+  answer: 'Sure! Please click on Find Products and choose Phone to explore our smartphone collection.',
+  category: 'chat',
+},
+{
+  id: '19',
+  question: 'Do you sell iPhones?',
+  answer: 'Yes, we offer iPhones as part of our phone collection. Use Find Products → Phone to view available iPhone models.',
+  category: 'chat',
+},
 ];
