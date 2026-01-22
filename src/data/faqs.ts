@@ -176,7 +176,7 @@ export const faqs: FAQ[] = [
     'To access personalized features like order tracking and adding items to the cart, you need to be logged in.\n\n' +
     'If you already have an account, please use the Login option available in the application.\n' +
     'If you are new, you can create an account easily.\n\n' +
-    '👆 You can log in inside the app from the top-right menu (three lines).',
+    '👆 You can log in inside the website from the top-right menu (three lines).',
   category: 'chat',
 },
   
