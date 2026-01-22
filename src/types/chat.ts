@@ -86,7 +86,8 @@ export type ConversationFlow =
   | 'office'
   | 'gaming'
   | 'daily'
-  | 'restart';
+  | 'restart'
+  | 'login-required';
 
 export interface ConversationState {
   flow: ConversationFlow;

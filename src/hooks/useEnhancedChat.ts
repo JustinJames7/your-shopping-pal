@@ -5,6 +5,7 @@ import { faqs } from '@/data/faqs';
 import { useOrders } from '@/hooks/useOrders';
 import { useCart } from '@/hooks/useCart';
 import { useSupportTickets } from '@/hooks/useSupportTickets';
+import { useAuth } from '@/hooks/useAuth';
 import { toast } from 'sonner';
 
 const generateId = () => Math.random().toString(36).substring(2, 9);
@@ -63,6 +64,7 @@ export const useEnhancedChat = () => {
   const { getOrderByOrderId } = useOrders();
   const { cartItems, cartCount, cartTotal, addToCart, removeFromCart, updateQuantity } = useCart();
   const { detectIssueType, generateSupportEmail, createSupportTicket } = useSupportTickets();
+  const { isAuthenticated } = useAuth();
 
   const addBotMessage = useCallback((message: ChatMessage) => {
     setIsTyping(true);
@@ -94,6 +96,25 @@ export const useEnhancedChat = () => {
   }, [getProductById, addBotMessage]);
 
   const handleAddToCart = useCallback(async (productId: string) => {
+    // Check if user is authenticated
+    if (!isAuthenticated) {
+      addBotMessage(
+        createMessage(
+          `🔐 **Login Required**\n\nPlease log in to add items to your cart. This helps us save your cart across sessions!`,
+          'bot',
+          {
+            type: 'options',
+            options: [
+              { id: '1', label: '🔑 Login / Sign Up', value: 'login-required' },
+              { id: '2', label: '🔍 Continue Browsing', value: 'product-discovery' },
+              { id: '3', label: '🏠 Back to Menu', value: 'restart' },
+            ],
+          }
+        )
+      );
+      return;
+    }
+
     setIsAddingToCart(true);
     const result = await addToCart(productId);
     setIsAddingToCart(false);
@@ -121,7 +142,7 @@ export const useEnhancedChat = () => {
     } else {
       toast.error('Failed to add to cart');
     }
-  }, [addToCart, addBotMessage, cartCount, cartTotal, getProductById]);
+  }, [addToCart, addBotMessage, cartCount, cartTotal, getProductById, isAuthenticated]);
 
   const handleAddToCartFromDetail = useCallback(async () => {
     if (state.selectedProductId) {
@@ -475,6 +496,11 @@ export const useEnhancedChat = () => {
               }
             )
           );
+          break;
+
+        case 'login-required':
+          // Redirect user to login page
+          window.location.href = '/auth';
           break;
 
         case 'restart':

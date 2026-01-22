@@ -7,7 +7,7 @@ interface OrderStatusCardProps {
   orderStatus: OrderStatus;
 }
 
-const statusIcons = {
+const statusIcons: Record<string, typeof Clock> = {
   processing: Clock,
   shipped: Package,
   'in-transit': Truck,
@@ -15,17 +15,17 @@ const statusIcons = {
   delivered: CheckCircle2,
 };
 
-const statusColors = {
-  processing: 'text-yellow-500 bg-yellow-500/10',
-  shipped: 'text-blue-500 bg-blue-500/10',
-  'in-transit': 'text-blue-500 bg-blue-500/10',
+const statusColors: Record<string, string> = {
+  processing: 'text-amber-500 bg-amber-500/10',
+  shipped: 'text-sky-500 bg-sky-500/10',
+  'in-transit': 'text-sky-500 bg-sky-500/10',
   'out-for-delivery': 'text-primary bg-primary/10',
-  delivered: 'text-green-500 bg-green-500/10',
+  delivered: 'text-emerald-500 bg-emerald-500/10',
 };
 
 export const OrderStatusCard = ({ orderStatus }: OrderStatusCardProps) => {
-  const StatusIcon = statusIcons[orderStatus.status];
-  const colorClass = statusColors[orderStatus.status];
+  const StatusIcon = statusIcons[orderStatus.status] || Clock;
+  const colorClass = statusColors[orderStatus.status] || 'text-muted-foreground bg-muted';
 
   const steps = ['processing', 'shipped', 'in-transit', 'out-for-delivery', 'delivered'];
   const currentStep = steps.indexOf(orderStatus.status);
