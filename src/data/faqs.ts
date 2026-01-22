@@ -168,5 +168,16 @@ export const faqs: FAQ[] = [
   answer: 'That depends on your budget and usage. Select Find Products → Laptop and I’ll help you choose the right one.',
   category: 'chat',
 },
+
+  {
+  id: '28',
+  question: 'How do I log in? / Login',
+  answer:
+    'To access personalized features like order tracking and adding items to the cart, you need to be logged in.\n\n' +
+    'If you already have an account, please use the Login option available in the application.\n' +
+    'If you are new, you can create an account easily.\n\n' +
+    '👆 You can log in inside the app, right above the bottom section.',
+  category: 'chat',
+},
   
 ];
