@@ -59,9 +59,10 @@ export const useEnhancedChat = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
 
+
   const { getFilteredProducts, getProductById } = useProducts();
-  const { getOrderByOrderId } = useOrders();
-  const { cartItems, cartCount, cartTotal, addToCart, removeFromCart, updateQuantity } = useCart();
+  const { getOrderByOrderId, createOrder } = useOrders();
+  const { cartItems, cartCount, cartTotal, addToCart, removeFromCart, updateQuantity, clearCart } = useCart();
   const { detectIssueType, generateSupportEmail, createSupportTicket } = useSupportTickets();
 
   const addBotMessage = useCallback((message: ChatMessage) => {
@@ -175,22 +176,37 @@ export const useEnhancedChat = () => {
     );
   }, [addBotMessage]);
 
-  const handleCheckout = useCallback(() => {
+  const handleCheckout = useCallback(async () => {
     setState({ flow: 'checkout' });
-    addBotMessage(
-      createMessage(
-        '🎉 **Ready to Checkout!**\n\nTo complete your purchase, please visit our secure checkout page. A customer service representative can also assist you over the phone.\n\n📞 **1-800-SHOP-HELP**\n\nWould you like any other assistance?',
-        'bot',
-        {
-          type: 'options',
-          options: [
-            { id: '1', label: '👤 Talk to Human', value: 'human-support' },
-            { id: '2', label: '🏠 Back to Menu', value: 'restart' },
-          ],
-        }
-      )
-    );
-  }, [addBotMessage]);
+
+    if (cartCount === 0) {
+      addBotMessage(createMessage('Your cart is empty! Add some items before checking out.', 'bot'));
+      return;
+    }
+
+    const result = await createOrder(cartTotal);
+
+    if (result.success && result.orderId) {
+      await clearCart();
+      addBotMessage(
+        createMessage(
+          `🎉 **Order Placed Successfully!**\n\nThank you for your purchase. Your order has been confirmed.\n\n🆔 **Order ID:** ${result.orderId}\nTo track your order, use the "Track Order" option.\n\nIs there anything else I can help you with?`,
+          'bot',
+          {
+            type: 'options',
+            options: [
+              { id: '1', label: '📦 Track Order', value: 'order-tracking' },
+              { id: '2', label: '🏠 Back to Menu', value: 'restart' },
+            ],
+          }
+        )
+      );
+    } else {
+      console.error('Checkout error:', result.error);
+      toast.error(`Order failed: ${result.error?.message || 'Unknown error'}`);
+      addBotMessage(createMessage('Sorry, there was an issue processing your order. Please try again.', 'bot'));
+    }
+  }, [addBotMessage, createOrder, cartCount, cartTotal, clearCart]);
 
   const handleSendSupportEmail = useCallback(async (email: string) => {
     if (state.supportContext) {

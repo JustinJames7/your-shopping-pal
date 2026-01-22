@@ -71,6 +71,10 @@ ON public.products FOR SELECT USING (true);
 CREATE POLICY "Orders are publicly readable" 
 ON public.orders FOR SELECT USING (true);
 
+CREATE POLICY "Public can create orders" 
+ON public.orders FOR INSERT 
+WITH CHECK (true);
+
 -- Cart Items: Session-based security
 CREATE POLICY "Session can view own cart items" 
 ON public.cart_items FOR SELECT USING (true);
