@@ -86,7 +86,7 @@ export const faqs: FAQ[] = [
   },
   {
   id: '14',
-  question: 'I want to buy an iPhone',
+  question: 'I want to buy an iPhone / iphone / iphones',
   answer: 'Great choice! To find the best iPhone for you, select Find Products and then choose Phone to see recommendations.',
   category: 'chat',
 },
@@ -120,4 +120,53 @@ export const faqs: FAQ[] = [
   answer: 'Yes, we offer iPhones as part of our phone collection. Use Find Products → Phone to view available iPhone models.',
   category: 'chat',
 },
+{
+  id: '20',
+  question: 'Do you have laptops? / laptop / laptops',
+  answer: 'Yes! We offer a variety of laptops for different needs. Use Find Products and select Laptop to explore available options.',
+  category: 'chat',
+},
+{
+  id: '21',
+  question: 'Show me laptops',
+  answer: 'Sure! Please choose Find Products and then select Laptop to view our laptop collection.',
+  category: 'chat',
+},
+{
+  id: '22',
+  question: 'I want to buy a laptop',
+  answer: 'Great! To find the best laptop for you, select Find Products and choose Laptop. I’ll guide you from there.',
+  category: 'chat',
+},
+{
+  id: '23',
+  question: 'Which laptop is best for students?',
+  answer: 'For students, we recommend lightweight and budget-friendly laptops. Use Find Products → Laptop and select Student usage to see recommendations.',
+  category: 'chat',
+},
+{
+  id: '24',
+  question: 'Which laptop is best for office work?',
+  answer: 'Office laptops focus on performance and reliability. Please select Find Products → Laptop and choose Office usage for suitable options.',
+  category: 'chat',
+},
+{
+  id: '25',
+  question: 'Do you have gaming laptops?',
+  answer: 'Yes! We offer powerful gaming laptops. Use Find Products and choose Laptop, then select Gaming usage to explore them.',
+  category: 'chat',
+},
+{
+  id: '26',
+  question: 'Show laptop recommendations',
+  answer: 'I can help with that! Please select Find Products and choose Laptop to get personalized laptop recommendations.',
+  category: 'chat',
+},
+{
+  id: '27',
+  question: 'Which laptop should I buy?',
+  answer: 'That depends on your budget and usage. Select Find Products → Laptop and I’ll help you choose the right one.',
+  category: 'chat',
+},
+  
 ];
